@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 import scrapy
 import csv
 import dateutil.parser
 import scrapy.loader.processors as proc
 import dateutil.parser
-import unicodedata
+import json
 
 from scrapy.loader import ItemLoader
 from ..items import Tweet, User
 from collections import namedtuple
-import json
+from unicodedata import normalize
 
 
 CsvRead = namedtuple('CsvRead', ['uid', 'tid'])
@@ -38,10 +37,7 @@ def to_date(str_):
 
 
 def gettext(el):
-  # if isinstance(el, str):
-  #   return el
-  return ''.join(
-      [unicodedata.normalize('NFKD', e.root) for e in el.css('::text')])
+  return ''.join([normalize('NFKD', e.root) for e in el.css('::text')])
 
 
 class TweetItemLoader(ItemLoader):
@@ -64,6 +60,9 @@ class UserItemLoader(ItemLoader):
 
 
 class TwitterSpider(scrapy.Spider):
+  CSS_BASE = '.'.join(
+      'div tweet permalink-tweet js-actionable-user js-actionable-tweet '
+      'js-original-tweet'.split())
   name = 'twitter'
 
   def __init__(self, location=None):
@@ -73,12 +72,9 @@ class TwitterSpider(scrapy.Spider):
     return load_csv(self.location)
 
   def parse(self, response):
-    CSS_BASE = '.'.join(
-        'div tweet permalink-tweet js-actionable-user js-actionable-tweet '
-        'js-original-tweet'.split())
     csv_read = response.meta['csv_read']
     loader = TweetItemLoader(Tweet(id=csv_read.tid), response=response)\
-        .nested_css(CSS_BASE)
+        .nested_css(self.CSS_BASE)
     loader.add_css('created_at', '.tweet-details-fixer .metadata span::text')
 
     loader_head = UserItemLoader(
