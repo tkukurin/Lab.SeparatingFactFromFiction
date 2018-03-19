@@ -21,6 +21,7 @@ def load_csv(location):
 
 class TwitterSpider(scrapy.Spider):
   name = 'twitter'
+  domain = 'https://twitter.com'
 
   def __init__(self, location=None, **kwargs):
     super().__init__(**kwargs)
@@ -48,4 +49,12 @@ class TwitterSpider(scrapy.Spider):
     loader.body.add_selector('links', '.twitter-timeline-link .js-display-url')
     loader.body.add_selector('hashtags', '.twitter-hashtag')
 
-    yield loader.load_item()
+    iframe_url = loader.tweet_selector.css(
+        '.js-media-container div::attr(data-src)').extract()
+    if iframe_url:
+      yield scrapy.Request(
+          self.domain + iframe_url[0],
+          loader.parse_iframe)
+    else:
+      yield loader.load_item()
+

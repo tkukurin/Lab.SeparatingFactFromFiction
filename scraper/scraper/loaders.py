@@ -66,6 +66,9 @@ class _TweetLoader(ItemLoader):
   body_in = proc.Identity()
   body_out = proc.Compose(only)
 
+  media_in = proc.Identity()
+  media_out = proc.Compose(only)
+
   parents_in = \
   children_in = proc.Compose(extract_tweet_meta)
 
@@ -87,6 +90,22 @@ class _TweetLoader(ItemLoader):
     self.add_value('user', self.user.load_item())
     self.add_value('body', self.body.load_item())
     return super().load_item()
+
+  def parse_iframe(self, response):
+    content = response.css('.SummaryCard-content')
+
+    url = [response.url]
+    title = content.css('h2.TwitterCard-title::text').extract()
+    body = content.css('p::text').extract()
+    source = content.css('span::text').extract()
+    image = response.css('.SummaryCard-image img::attr(data-src)').extract()
+
+    media, locals_ = Media(), locals()
+    for k, v in map(lambda k: (k, locals_[k]), media.fields):
+      media[k] = only(v)
+
+    self.add_value('media', media)
+    yield self.load_item()
 
 
 class TweetLoader:
