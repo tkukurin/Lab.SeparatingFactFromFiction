@@ -43,6 +43,8 @@ class TwitterSpider(scrapy.Spider):
 
     loader.user.add_css('name', 'a strong.fullname::text')
     loader.user.add_css('handle', 'a span.username b::text')
+    loader.user.add_value(
+        'is_verified', len(loader.user.selector.css('.Icon--verified')) > 0)
 
     loader.body.add_selector('content', 'p')
     loader.body.add_selector('atreplies', '.twitter-atreply')

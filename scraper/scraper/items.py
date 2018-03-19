@@ -3,15 +3,17 @@
 import scrapy
 
 
-class Parent(scrapy.Item):
+class RelatedTweet(scrapy.Item):
   tweet_id = scrapy.Field()
   user_id = scrapy.Field()
+  date = scrapy.Field()
 
 
 class User(scrapy.Item):
   id = scrapy.Field()
   handle = scrapy.Field()
   name = scrapy.Field()
+  is_verified = scrapy.Field()
 
 
 class Body(scrapy.Item):
@@ -23,10 +25,10 @@ class Body(scrapy.Item):
 
 class Media(scrapy.Item):
   url = scrapy.Field()
-  source = scrapy.Field()
   title = scrapy.Field()
-  body = scrapy.Field()
-  image = scrapy.Field()
+  content = scrapy.Field()
+  content_source = scrapy.Field()
+  data_source = scrapy.Field()
 
 
 class Tweet(scrapy.Item):

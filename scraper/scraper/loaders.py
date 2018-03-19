@@ -39,15 +39,23 @@ class BodyItemLoader(ItemLoader):
 
 class UserItemLoader(ItemLoader):
   default_output_processor = proc.Join('')
+  is_verified_out = proc.TakeFirst()
+
+
+class MediaItemLoader(ItemLoader):
+  default_input_processor = proc.MapCompose(gettext)
+  default_output_processor = proc.TakeFirst()
+
+  url_in = proc.Identity()
 
 
 def extract_tweet_meta(div_wrap):
-   tweet_xpath = div_wrap.xpath("@data-tweet-id")
-   user_xpath = div_wrap.xpath("@data-user-id")
+   tweets = div_wrap.xpath("@data-tweet-id").extract()
+   users = div_wrap.xpath("@data-user-id").extract()
+   dates = div_wrap.css('.tweet-timestamp::attr(title)').extract()
 
-   return [Parent(tweet_id=tid, user_id=uid)
-           for tid, uid in
-           zip(tweet_xpath.extract(), user_xpath.extract())]
+   return [RelatedTweet(tweet_id=tid, user_id=uid, date=to_date(date))
+           for tid, uid, date in zip(tweets, users, dates)]
 
 
 class _TweetLoader(ItemLoader):
@@ -93,18 +101,15 @@ class _TweetLoader(ItemLoader):
 
   def parse_iframe(self, response):
     content = response.css('.SummaryCard-content')
+    media_item_loader = MediaItemLoader(Media(), content)
 
-    url = [response.url]
-    title = content.css('h2.TwitterCard-title::text').extract()
-    body = content.css('p::text').extract()
-    source = content.css('span::text').extract()
-    image = response.css('.SummaryCard-image img::attr(data-src)').extract()
+    media_item_loader.add_value('url', response.url)
+    media_item_loader.add_selector('content', 'p::text')
+    media_item_loader.add_selector('title', 'h2.TwitterCard-title::text')
+    media_item_loader.add_selector('content_source', '.SummaryCard-content span::text')
+    media_item_loader.add_selector('data_source', '::attr(data-src)')
 
-    media, locals_ = Media(), locals()
-    for k, v in map(lambda k: (k, locals_[k]), media.fields):
-      media[k] = only(v)
-
-    self.add_value('media', media)
+    self.add_value('media', media_item_loader.load_item())
     yield self.load_item()
 
 
