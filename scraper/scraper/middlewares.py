@@ -1,6 +1,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from .exceptions import *
 
 
 class ScraperSpiderMiddleware(object):
@@ -33,6 +34,8 @@ class ScraperSpiderMiddleware(object):
       # middleware and into the spider.
 
       # Should return None or raise an exception.
+      if response.url.endswith('suspended'):
+        raise ScrapeException.SUSPENDED(response.url)
       return None
 
   def process_spider_output(self, response, result, spider):
@@ -48,7 +51,9 @@ class ScraperSpiderMiddleware(object):
 
       # Should return either None or an iterable of Response, dict
       # or Item objects.
-      pass
+      if exception and response.status == 200:
+        raise ScrapeException.WRAP(response.url, exception)
+      return []
 
   def spider_opened(self, spider):
       spider.logger.info('Spider opened: %s' % spider.name)

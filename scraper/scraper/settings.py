@@ -39,7 +39,7 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
-   'scraper.middlewares.ScraperSpiderMiddleware': 543,
+  'scraper.middlewares.ScraperSpiderMiddleware': 543,
 }
 
 # Enable or disable downloader middlewares
@@ -80,3 +80,9 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 2.0
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+import logging
+# --logfile LOG_FILE
+#LOG_FILE = 'errors.log'
+LOG_LEVEL = logging.ERROR
+LOG_SHORT_NAMES = False
