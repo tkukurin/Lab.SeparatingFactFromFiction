@@ -98,7 +98,7 @@ class TweetLoader:
     # due to the fact that we have csv_read as the source of truth,
     # we will store that into the metadata.
     csv_read = response.meta.get('csv_read')
-    user_handle, tweet_id = response.url.split('/')[-2:]
+    tweet_id = response.url[response.url.rfind('/') + 1:]
     item = Tweet(id=csv_read.tid)
 
     base_selector = response.css(_TweetLoader.CSS_BASE)
