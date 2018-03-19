@@ -33,7 +33,7 @@ class TwitterSpider(scrapy.Spider):
     loader = TweetLoader(response=response)
 
     loader.add_css('created_at', '.tweet-details-fixer .metadata span::text')
-    loader.add_selector('parent', '.ancestor.tweet')
+    loader.add_selector('parents', '.ancestor.tweet')
 
     loader.add_value('retweet_count', loader.stat_selector('retweet'))
     loader.add_value('reply_count', loader.stat_selector('reply'))

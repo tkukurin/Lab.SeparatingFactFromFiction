@@ -45,10 +45,9 @@ def extract_tweet_meta(div_wrap):
    tweet_xpath = div_wrap.xpath("@data-tweet-id")
    user_xpath = div_wrap.xpath("@data-user-id")
 
-   return Parent(
-       tweet_id=only(tweet_xpath.extract()),
-       user_id=only(user_xpath.extract())) \
-     if len(tweet_xpath) and len(user_xpath) else None
+   return [Parent(tweet_id=tid, user_id=uid)
+           for tid, uid in
+           zip(tweet_xpath.extract(), user_xpath.extract())]
 
 
 class _TweetLoader(ItemLoader):
@@ -67,8 +66,8 @@ class _TweetLoader(ItemLoader):
   body_in = proc.Identity()
   body_out = proc.Compose(only)
 
-  parent_in = proc.Compose(extract_tweet_meta)
-  parent_out = proc.TakeFirst()
+  parents_in = proc.Compose(extract_tweet_meta)
+  parents_out = proc.Identity()
 
   retweet_count_in = \
   favorite_count_in = \

@@ -25,7 +25,7 @@ class Tweet(scrapy.Item):
   created_at = scrapy.Field()
   id = scrapy.Field()
 
-  parent = scrapy.Field()
+  parents = scrapy.Field()
   user = scrapy.Field() #serializer=None)  # todo
   body = scrapy.Field()
 
