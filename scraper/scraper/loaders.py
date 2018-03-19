@@ -66,8 +66,11 @@ class _TweetLoader(ItemLoader):
   body_in = proc.Identity()
   body_out = proc.Compose(only)
 
-  parents_in = proc.Compose(extract_tweet_meta)
-  parents_out = proc.Identity()
+  parents_in = \
+  children_in = proc.Compose(extract_tweet_meta)
+
+  parents_out = \
+  children_out = proc.Identity()
 
   retweet_count_in = \
   favorite_count_in = \
