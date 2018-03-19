@@ -53,10 +53,6 @@ def extract_tweet_meta(div_wrap):
 
 class _TweetLoader(ItemLoader):
 
-  CSS_BASE_FORMAT = '.'.join(
-      'div tweet permalink-tweet js-actionable-user js-actionable-tweet '
-      'js-original-tweet[data-tweet-id={}]'.split())
-
   CSS_BASE = 'div[role="main"] div.permalink-inner'
 
   default_input_processor = proc.MapCompose(gettext)
