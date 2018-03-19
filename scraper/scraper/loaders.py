@@ -33,11 +33,8 @@ def gettext(el):
 
 class BodyItemLoader(ItemLoader):
   default_input_processor = proc.MapCompose(gettext)
-  default_output_processor = proc.Join('')
-
-  # lists
-  atreplies_out = proc.Identity()
-  links_out = proc.Identity()
+  default_output_processor = proc.Identity()
+  content_out = proc.Join('')
 
 
 class UserItemLoader(ItemLoader):
@@ -60,10 +57,6 @@ class _TweetLoader(ItemLoader):
       'div tweet permalink-tweet js-actionable-user js-actionable-tweet '
       'js-original-tweet[data-tweet-id={}]'.split())
 
-  # CSS_BASE = '.'.join(
-  #     'div tweet permalink-tweet js-actionable-user js-actionable-tweet '
-  #     'js-original-tweet'.split())
-
   CSS_BASE = 'div[role="main"] div.permalink-inner'
 
   default_input_processor = proc.MapCompose(gettext)
@@ -83,7 +76,7 @@ class _TweetLoader(ItemLoader):
 
   retweet_count_in = \
   favorite_count_in = \
-  reply_count_in = proc.TakeFirst()
+  reply_count_in = proc.Compose(only)
 
   label_in = proc.Identity()
   label_out = proc.TakeFirst()
@@ -108,9 +101,7 @@ class TweetLoader:
     user_handle, tweet_id = response.url.split('/')[-2:]
     item = Tweet(id=csv_read.tid)
 
-    # css_str = _TweetLoader.CSS_BASE_FORMAT.format(csv_read.tid)
     base_selector = response.css(_TweetLoader.CSS_BASE)
-
     obj = _TweetLoader(item, base_selector, response)
     obj.csv_read = csv_read
 

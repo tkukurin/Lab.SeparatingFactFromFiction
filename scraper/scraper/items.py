@@ -18,6 +18,7 @@ class Body(scrapy.Item):
   content = scrapy.Field()
   atreplies = scrapy.Field()
   links = scrapy.Field()
+  hashtags = scrapy.Field()
 
 
 class Tweet(scrapy.Item):

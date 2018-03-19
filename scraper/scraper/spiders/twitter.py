@@ -45,5 +45,6 @@ class TwitterSpider(scrapy.Spider):
     loader.body.add_selector('content', 'p')
     loader.body.add_selector('atreplies', '.twitter-atreply')
     loader.body.add_selector('links', '.twitter-timeline-link .js-display-url')
+    loader.body.add_selector('hashtags', '.twitter-hashtag')
 
     yield loader.load_item()
