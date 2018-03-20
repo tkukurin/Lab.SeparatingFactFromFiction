@@ -9,9 +9,9 @@ The two files from the original paper are:
     presented in the paper
     - The mapping between integers and labels in this dataset is the following:
     
-    Propaganda: 0
-    Clickbait: 1
-    Satire: 2
+    Propaganda: 0;
+    Clickbait: 1;
+    Satire: 2;
     Hoax: 3
 
 * binary_tweets.csv
@@ -21,7 +21,7 @@ The two files from the original paper are:
     the dataset in multiclass.csv, but contain more granular labels in the multiclass.csv file
     - The mapping between integers and labels in this dataset is the following:
     
-    Verified News: 0
+    Verified News: 0;
     Unverified News: 1
 
 Each of these contains the following columns:
