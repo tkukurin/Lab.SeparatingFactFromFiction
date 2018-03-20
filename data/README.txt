@@ -1,7 +1,9 @@
-This directory contains two files containing ID's and labels for expriments conducted in our paper
-"Separating Facts from Fiction: Linguistic Models to Classify Suspicious and Trusted News Posts on Twitter".
+This directory contains two files containing IDs and labels for experiments conducted in the paper
+"Separating Facts from Fiction: Linguistic Models to Classify Suspicious and Trusted News Posts on
+Twitter". It also contains a file `tweets.json`, which contains all available Tweets (as of
+March 19, 2018) referenced in these files, scraped to a JSON array.
 
-The two files are:
+The two files from the original paper are:
 * multiclass_tweets.csv
     - CSV containing ID's and four labels for the multiclass experiments 
     presented in the paper
