@@ -1,4 +1,7 @@
 # custom:
+data/tweets_normalized.txt
+data/tweets_parsed.json
+
 **/out.*
 **/test*
 **/*.log
