@@ -1,15 +1,10 @@
 import re
 import os
-import functools
 import pandas as pd
+from util import compose
 
 DATA = '../data'
 TWEET_FILE = os.path.join(DATA, 'tweets.json')
-
-
-def compose(*fs):
-  return lambda value: \
-    functools.reduce(lambda v, f: f(v), fs, value)
 
 
 def regex_normalize(match):
