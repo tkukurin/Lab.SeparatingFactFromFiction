@@ -1,9 +1,13 @@
+import os
+
 SEED=42
 
-import os
 class Path:
   DATA_DIR = 'data'
   MODEL_DIR = 'models'
+  TWEETS_RAW_TEXT = None
+  TWEETS_SN_PARSED_JSON = None
+  TWEETS_CRAWLED_JSON = None
 
   @staticmethod
   def data(fname: str) -> str:
