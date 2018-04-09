@@ -33,6 +33,9 @@ maximize both POS tagging accuracy and parsing accuracy."
 * http://davidsbatista.net/blog/2017/03/25/syntaxnet/
 * [Gensim Doc2Vec](
 https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-lee.ipynb)
+** They train for 15 epochs, 200-dimensional models
+* [GloVe](https://nlp.stanford.edu/projects/glove/)
+** [Paper](https://nlp.stanford.edu/pubs/glove.pdf)
 
 ### Questions
 * How exactly are they doing preprocessing? I'm guessing stopword removal et al. is done after the
