@@ -19,14 +19,17 @@ def regex_normalize(match):
 
 
 def remove_crap(tweet_content):
-  regex = '|'.join([
+  # also remove surrounding whitespace
+  regex = '|'.join('\\s*{}\\s*'.format(i) for i in [
     # @reply
     '(@[A-Za-z0-9_]+)',
     # URL (just guess abc.xyz is URL). don't capture inner groups.
     '((?:http[s]?://)?(?:www\.)?\S+\.[a-z]{2,6}/?\S*)',
     # hashtag
     '(#\S+)',
-    # punctuation will be tagged by SyntaxNet, probably can extract from there.
+    # punctuation will be tagged by SyntaxNet,
+    # remove newline for easier input
+    '\\n',
     # '(\.,-:;)',
   ])
   return re.sub(regex, regex_normalize, tweet_content)

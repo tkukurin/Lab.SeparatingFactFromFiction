@@ -3,7 +3,7 @@ data/tweets_normalized.txt
 data/tweets_parsed.json
 
 **/out.*
-**/test*
+**/nocvs*
 **/*.log
 
 # Created by https://www.gitignore.io/api/python,intellij
