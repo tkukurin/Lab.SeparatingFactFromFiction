@@ -24,7 +24,7 @@ def expand_to_columns(df, key):
 
 def stream_lines(fname):
   with open(fname) as f:
-    yield from f
+    yield from map(lambda s: s.strip(), f)
 
 from . import compose
 read_lines = compose(stream_lines, list)
