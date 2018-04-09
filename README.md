@@ -31,8 +31,8 @@ maximize both POS tagging accuracy and parsing accuracy."
 
 ### Resources
 * http://davidsbatista.net/blog/2017/03/25/syntaxnet/
-* [Gensim Doc2Vec](https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec
--lee.ipynb)
+* [Gensim Doc2Vec](
+https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-lee.ipynb)
 
 ### Questions
 * How exactly are they doing preprocessing? I'm guessing stopword removal et al. is done after the
