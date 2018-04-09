@@ -19,7 +19,8 @@ docker pull nardeas/tensorflow-syntaxnet
 
 ### Processing
 Some tweets turned out to be empty, after preprocessing we retain a total of 116,882 (this is the
-current number of saved items in the parsed tweets file).
+current number of saved items in the parsed tweets file). And then drop again to ~98k after
+removing duplicates.
 
 ### Better model ([source](https://github.com/tensorflow/models/issues/1347))
 "`parsey_mcparseface` was trained on a significantly larger dataset. Further, it was optimized to
