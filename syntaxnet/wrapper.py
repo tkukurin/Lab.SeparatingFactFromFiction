@@ -5,15 +5,20 @@ from dragnn.wrapper import SyntaxNet
 
 DATA = '/data'
 sn = SyntaxNet(lang="English", model_dir="/usr/local/tfmodels", logging=False)
-start = 0
 
-with open(os.path.join(DATA, 'parsed_start_{}.json'.format(start)), 'w') as f_out, \
-    open(os.path.join(DATA, 'tweets_normalized.txt')) as f_in:
-  f_out.write("[")
+with open(os.path.join(DATA, 'tweets_sn_parsed.json'), 'w') as f_out, \
+    open(os.path.join(DATA, 'tweets-normalized-v2.txt')) as f_in:
+  # f_out.write("[")
+
+  parsed = []
   for i, tweet in enumerate(f_in):
-    as_json = sn.parse(tweet.strip()) if len(tweet.strip()) > 0 else {}
+    as_json = sn.parse(tweet.strip())
     as_json['index'] = i
+    parsed.append(as_json)
+    if i % 5000 == 0:
+      print("Done parsing:", i)
 
-    json.dump(as_json, f_out, indent=2)
-    f_out.write(",")
-  f_out.write("]")
+  json.dump(parsed, f_out, indent=2)
+
+    # f_out.write(",")
+  # f_out.write("]")

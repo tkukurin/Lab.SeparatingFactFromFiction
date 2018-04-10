@@ -40,4 +40,5 @@ https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-
 ### Questions
 * How exactly are they doing preprocessing? I'm guessing stopword removal et al. is done after the
 SyntaxNet parser since the parser takes entire sentences as input.
+* Some Tweets seem to be in Spanish. WTF?
 
