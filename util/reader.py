@@ -1,5 +1,6 @@
+import logging as log
 import pandas as pd
-from .const import Path
+from .const import FileManager
 
 def dict_get(key):
   if isinstance(key, str):
@@ -31,11 +32,11 @@ read_lines = compose(stream_lines, list)
 
 
 def load_df() -> pd.DataFrame:
-  df = pd.read_json(Path.TWEETS_SN_PARSED_JSON).dropna()
-  df_original = pd.read_json(Path.TWEETS_CRAWLED_JSON)
+  df = pd.read_json(FileManager.TWEETS_SN_PARSED_JSON).dropna()
+  df_original = pd.read_json(FileManager.TWEETS_CRAWLED_JSON)
   df_expanded = expand_to_columns(df_original, ['user', 'body'])
   ret = df.join(df_expanded, on='index').drop_duplicates(['input'])
-  print("Loaded DF with keys", ret.keys())
+  log.info("Loaded DF with keys", ret.keys())
   return ret
 
 
