@@ -11,10 +11,15 @@ https://github.com/tensorflow/models/blob/master/research/syntaxnet/g3doc/CLOUD.
 convenience scripts in the `syntaxnet` directory.
 
 The file `wrapper.py` is to be run from within a docker container obtained from
-[nardeas/tensorflow-syntaxnet](https://github.com/nardeas/tensorflow-syntaxnet). To install use:
+[nardeas/tensorflow-syntaxnet](https://github.com/nardeas/tensorflow-syntaxnet). Usage:
 
 ```
+# install
 docker pull nardeas/tensorflow-syntaxnet
+
+# run it.
+$ ./syntaxnet/run.sh
+$ ./syntaxnet/exec.sh
 ```
 
 ### Processing
@@ -34,8 +39,7 @@ maximize both POS tagging accuracy and parsing accuracy."
 * [Gensim Doc2Vec](
 https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-lee.ipynb)
   * They train for 15 epochs, 200-dimensional models
-* [GloVe](https://nlp.stanford.edu/projects/glove/)
-  * [Paper](https://nlp.stanford.edu/pubs/glove.pdf)
+* [GloVe](https://nlp.stanford.edu/projects/glove/): [Paper](https://nlp.stanford.edu/pubs/glove.pdf)
 
 ### Questions
 * How exactly are they doing preprocessing? I'm guessing stopword removal et al. is done after the
