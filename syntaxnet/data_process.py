@@ -52,9 +52,16 @@ def normalize(tweets):
 
 
 if __name__ == '__main__':
-  tweets = pd.read_json(const.Path.TWEETS_CRAWLED_JSON)
+  import sys
+  if len(sys.argv) != 2:
+    raise Exception('Use: program.py [multi|binary]')
+  type_ = sys.argv[1]
+  tweets = pd.read_json(
+    const.FileManager.TWEETS_CRAWLED_JSON if type_[0] == 'm' else \
+    const.FileManager.TWEETS_MULTICLASS_CRAWLED_JSON if type_[0] == 'b' else \
+    None)
   content = tweets['body'].apply(lambda dict_: dict_['content'])
-  with open(const.Path.data('tweets-normalized-v2.txt'), 'w') as f:
+  with open(const.Path.data('tweets-normalized-%s.txt' % type_[0]), 'w') as f:
     for tweet in normalize(content):
       print(tweet, file=f)
 

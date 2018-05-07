@@ -65,6 +65,7 @@ class FileManager:
 FileManager.TWEETS_RAW_TEXT = FileManager().data('tweets_normalized.txt')
 FileManager.TWEETS_SN_PARSED_JSON = FileManager().data('tweets_sn_parsed.json')
 FileManager.TWEETS_CRAWLED_JSON = FileManager().data('tweets.json')
+FileManager.TWEETS_MULTICLASS_CRAWLED_JSON = FileManager().data('multiclass_tweets.json')
 
 
 class Path:
