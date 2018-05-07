@@ -1,4 +1,6 @@
 # custom:
+models/*
+
 data/tweets_normalized*.txt
 data/tweets_parsed*.json
 
