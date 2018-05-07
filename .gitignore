@@ -2,6 +2,7 @@
 models/*
 
 data/tweets_normalized*.txt
+data/tweets_sn_parsed*
 data/tweets_parsed*.json
 
 **/out.*
