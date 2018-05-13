@@ -47,7 +47,7 @@ maximize both POS tagging accuracy and parsing accuracy."
 * [Gensim Doc2Vec](
 https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-lee.ipynb)
   * They train for 15 epochs, 200-dimensional models
-* [GloVe](https://nlp.stanford.edu/projects/glove/): [Paper](https://nlp.stanford.edu/pubs/glove.pdf)
+* [Example embedding in Keras](https://github.com/bhaveshoswal/CNN-text-classification-keras/blob/master/model.py)
 
 ## Notes
 * Some Tweets seem to be in Spanish. WTF?
