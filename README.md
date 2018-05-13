@@ -34,10 +34,11 @@ removing duplicates.
 maximize both POS tagging accuracy and parsing accuracy."
 
 
-## Lexicons
+## Lexicons and resources
 * [Alternative to LIWC](https://www.quora.com/What-is-an-alternative-to-LIWC-software)
 * [Positive/Negative words](https://www.quora.com/Is-there-a-downloadable-database-of-positive-and-negative-words)
 * [Subjectivity](http://mpqa.cs.pitt.edu/#subj_lexicon)
+* [GloVe embeddings](https://nlp.stanford.edu/projects/glove/) (downloaded Twitter)
 
 ## TODO
 
@@ -48,8 +49,6 @@ https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-
   * They train for 15 epochs, 200-dimensional models
 * [GloVe](https://nlp.stanford.edu/projects/glove/): [Paper](https://nlp.stanford.edu/pubs/glove.pdf)
 
-### Questions
-* How exactly are they doing preprocessing? I'm guessing stopword removal et al. is done after the
-SyntaxNet parser since the parser takes entire sentences as input.
+## Notes
 * Some Tweets seem to be in Spanish. WTF?
 
