@@ -6,6 +6,8 @@ are available because some accounts were suspended in the meantime. In total, ou
 
 
 ## SyntaxNet
+They mention SyntaxNet preprocessing, however I'm not sure where the output gets sent to.
+
 SyntaxNet is installed [via Docker](
 https://github.com/tensorflow/models/blob/master/research/syntaxnet/g3doc/CLOUD.md), find sh
 convenience scripts in the `syntaxnet` directory.
@@ -31,6 +33,10 @@ removing duplicates.
 "`parsey_mcparseface` was trained on a significantly larger dataset. Further, it was optimized to
 maximize both POS tagging accuracy and parsing accuracy."
 
+
+## Lexicons
+* [Alternative to LIWC](https://www.quora.com/What-is-an-alternative-to-LIWC-software)
+* [Positive/Negative words](https://www.quora.com/Is-there-a-downloadable-database-of-positive-and-negative-words)
 
 ## TODO
 
