@@ -37,6 +37,7 @@ maximize both POS tagging accuracy and parsing accuracy."
 ## Lexicons
 * [Alternative to LIWC](https://www.quora.com/What-is-an-alternative-to-LIWC-software)
 * [Positive/Negative words](https://www.quora.com/Is-there-a-downloadable-database-of-positive-and-negative-words)
+* [Subjectivity](http://mpqa.cs.pitt.edu/#subj_lexicon)
 
 ## TODO
 
