@@ -21,6 +21,7 @@ def _find_dir_containing(fname):
 ROOT_DIR = _find_dir_containing('.git')
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 MODEL_DIR = os.path.join(ROOT_DIR, 'models')
+COLLECTION_DIR = os.path.join(ROOT_DIR, 'collections')
 
 log.info('Using {} as root directory'.format(ROOT_DIR))
 for f in (DATA_DIR, ROOT_DIR, MODEL_DIR):
@@ -37,6 +38,7 @@ class FileManager:
     self.data_dir = DATA_DIR
     self.root_dir = ROOT_DIR
     self.model_dir = MODEL_DIR
+    self.collection_dir = COLLECTION_DIR
     self.prefix = prefix
 
   def data(self, fname: str) -> pathlib.Path:
@@ -44,6 +46,9 @@ class FileManager:
 
   def model(self, fname: str) -> pathlib.Path:
     return pathlib.Path(self.model_dir, self.prefix + fname)
+
+  def collection(self, fname: str):
+    return pathlib.Path(self.collection_dir, self.prefix + fname)
   
   def root(self, fname: str) -> pathlib.Path:
     return pathlib.Path(self.root_dir, self.prefix + fname)

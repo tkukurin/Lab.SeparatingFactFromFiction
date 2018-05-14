@@ -1,0 +1,18 @@
+; Source: https://e-l.unifi.it/pluginfile.php/426013/mod_folder/content/0/Factive%20and%20non-factive%20verbs%202016_17.pdf?forcedownload=1
+
+argue
+doubt
+hypothesise
+recommend
+assume
+estimate
+imply
+suggest
+believe
+expect
+predict
+suspect
+claim
+foresee
+presume
+think

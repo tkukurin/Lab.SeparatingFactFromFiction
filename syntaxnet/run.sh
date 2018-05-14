@@ -13,5 +13,5 @@ docker run -d --rm -it \
     --name syntaxnet-wrap \
     -v "$DIR/data":/data \
     -v "$DIR/syntaxnet":/usr/local/runner \
-    -v ~/nlp_data/conll17:/usr/local/tfmodels/ \
+    -v ~/nlp_data/parsey:/usr/local/tfmodels/ \
     nardeas/tensorflow-syntaxnet

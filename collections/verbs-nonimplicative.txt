@@ -1,0 +1,9 @@
+; Source: http://web.stanford.edu/~laurik/publications/english_predicate.pdf
+; https://web.stanford.edu/~laurik/
+
+forget
+fail
+neglect
+decline
+avoid
+refrain

@@ -1,0 +1,18 @@
+; source: https://e-l.unifi.it/pluginfile.php/426013/mod_folder/content/0/Factive%20and%20non-factive%20verbs%202016_17.pdf?forcedownload=1
+
+accept
+establish
+note
+reveal
+acknowledge
+explain
+observe
+see
+confirm
+know
+prove
+show
+demonstrate
+learn
+recognise
+understand
