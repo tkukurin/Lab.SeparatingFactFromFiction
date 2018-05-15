@@ -2,6 +2,7 @@ import logging as log
 import pandas as pd
 from .const import FileManager
 
+
 def dict_get(key):
   if isinstance(key, str):
     return lambda i: i[key]
