@@ -48,7 +48,5 @@ maximize both POS tagging accuracy and parsing accuracy."
 https://github.com/RaRe-Technologies/gensim/blob/develop/docs/notebooks/doc2vec-lee.ipynb)
   * They train for 15 epochs, 200-dimensional models
 * [Example embedding in Keras](https://github.com/bhaveshoswal/CNN-text-classification-keras/blob/master/model.py)
-
-## Notes
-* Some Tweets seem to be in Spanish. WTF?
+* [ROC/AUC in Keras](https://stackoverflow.com/questions/41032551/how-to-compute-receiving-operating-characteristic-roc-and-auc-in-keras)
 
