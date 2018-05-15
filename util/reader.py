@@ -32,12 +32,24 @@ read_lines = compose(stream_lines, list)
 
 
 def load_df() -> pd.DataFrame:
-  df = pd.read_json(FileManager.TWEETS_SN_PARSED_JSON).dropna()
+  # df = pd.read_json(FileManager.TWEETS_SN_PARSED_JSON).dropna()
   df_original = pd.read_json(FileManager.TWEETS_CRAWLED_JSON)
   df_expanded = expand_to_columns(df_original, ['user', 'body'])
-  ret = df.join(df_expanded, on='index').drop_duplicates(['input'])
+  # ret = df.join(df_expanded, on='index').drop_duplicates(['input'])
+  ret = df_expanded
   log.info("Loaded DF with keys", ret.keys())
   return ret
+
+def load_df_multi() -> pd.DataFrame:
+  df_original = pd.read_json(FileManager.TWEETS_MULTI_CRAWLED_JSON)
+  df_expanded = expand_to_columns(df_original, ['user', 'body'])
+  ret = df_expanded
+  log.info("Loaded DF with keys", ret.keys())
+  return ret
+  
+
+def cleanup(df):
+  return df.drop_duplicates(subset='body_content')
 
 
 out_word = dict_get('word')
