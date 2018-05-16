@@ -71,6 +71,7 @@ FileManager.TWEETS_RAW_TEXT = FileManager().data('tweets_normalized.txt')
 FileManager.TWEETS_SN_PARSED_JSON = FileManager().data('tweets_sn_parsed.json')
 FileManager.TWEETS_CRAWLED_JSON = FileManager().data('tweets.json')
 FileManager.TWEETS_MULTI_CRAWLED_JSON = FileManager().data('multiclass_tweets.json')
+FileManager.GLOVE_200 = '/Users/toni/nlp_data/glove.twitter.27B.200d.txt'
 
 
 class Path:

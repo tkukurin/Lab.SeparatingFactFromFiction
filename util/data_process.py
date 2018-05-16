@@ -55,12 +55,8 @@ class TweetNormalizer(TransformerMixin):
 
 
 def normalize(tweets):
-  pipeline = compose(
-      str.lower,
-      remove_crap,
-      str.strip)
-
-  return map(pipeline, tweets)
+  normalizer = TweetNormalizer()
+  return map(normalizer.transform, tweets)
 
 
 if __name__ == '__main__':
