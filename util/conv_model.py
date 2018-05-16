@@ -6,14 +6,17 @@ from keras.models import Model
 from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
 
-def model(tokenizer):
+def model(embedding_matrix, tokenizer):
+  """
+  embedding_matrix: matrix of 200-dim GloVe embeddings
+  tokenizer: instance of fitted keras.preprocessing.text.Tokenizer
+  """
   EMBEDDING_DIM = 200
   MAX_NUM_WORDS = 93038
   MAX_SEQUENCE_LENGTH = 140
 
   word_index = tokenizer.word_index
   num_words = min(MAX_NUM_WORDS, len(word_index) + 1)
-  embedding_matrix = np.zeros((num_words, EMBEDDING_DIM))
 
   sequence_input = Input(
       shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
@@ -32,7 +35,4 @@ def model(tokenizer):
   preds = Dense(len(df.label.unique()), activation='softmax')(x)
 
   model = Model(sequence_input, preds)
-  model.compile(loss='categorical_crossentropy',
-                optimizer='rmsprop',
-                metrics=['acc'])
   return model

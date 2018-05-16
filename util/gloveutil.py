@@ -14,7 +14,7 @@ def load_glove(fname):
 
 def glove_to_embedding_matrix(glove_200, word_index):
   embedding_dim = 200
-  embedding_matrix = np.zeros((num_words, embedding_dim))
+  embedding_matrix = np.zeros((len(word_index), embedding_dim))
 
   for word, i in word_index.items():
       embedding_vector = glove_200.get(word)
