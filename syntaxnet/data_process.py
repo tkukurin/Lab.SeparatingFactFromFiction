@@ -42,6 +42,18 @@ def remove_crap(tweet_content):
   return re.sub(regex_str, regex_normalize, tweet_content)
 
 
+from sklearn.pipeline import TransformerMixin
+class TweetNormalizer(TransformerMixin):
+
+  def __init__(self):
+    self.pipeline = compose(
+      str.lower, remove_crap, str.strip)
+    self.fit = lambda *x: self
+
+  def transform(self, x):
+    return self.pipeline(x)
+
+
 def normalize(tweets):
   pipeline = compose(
       str.lower,
