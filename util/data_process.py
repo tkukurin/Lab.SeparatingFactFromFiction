@@ -1,6 +1,18 @@
 import re
 import pandas as pd
 from util import compose, const
+from sklearn.pipeline import TransformerMixin
+
+
+class TweetNormalizer(TransformerMixin):
+
+  def __init__(self):
+    self.pipeline = compose(
+      str.lower, remove_crap, str.strip)
+    self.fit = lambda *x: self
+
+  def transform(self, x):
+    return self.pipeline(x)
 
 
 # replace with @[a-zA-Z] since this is username format for Twitter
@@ -31,6 +43,7 @@ values = [v for k, v in regex_key_value] + [
 ]
 regex_str = '|'.join('\\s*{}\\s*'.format(i) for i in values)
 
+
 def regex_normalize(match):
   for match_group, replacement in enumerate(keys, start=1):
     if match.group(match_group):
@@ -40,18 +53,6 @@ def regex_normalize(match):
 
 def remove_crap(tweet_content):
   return re.sub(regex_str, regex_normalize, tweet_content)
-
-
-from sklearn.pipeline import TransformerMixin
-class TweetNormalizer(TransformerMixin):
-
-  def __init__(self):
-    self.pipeline = compose(
-      str.lower, remove_crap, str.strip)
-    self.fit = lambda *x: self
-
-  def transform(self, x):
-    return self.pipeline(x)
 
 
 def normalize(tweets):

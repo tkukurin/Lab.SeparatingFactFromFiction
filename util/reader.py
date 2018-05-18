@@ -53,5 +53,35 @@ def cleanup_df(df):
   return df.drop_duplicates(subset='body_content')
 
 
-out_word = dict_get('word')
-out_pos = dict_get('pos_tag')
+def load_word_collections():
+  fm = FileManager()
+
+  def words_from_file(fname, encoding='UTF-8'):
+    with open(fname, encoding=encoding) as f:
+      s = set()
+      include = lambda w: not (len(w.strip()) == 0 or w.startswith(';'))
+      return set(w.strip().lower() for w in f if include(w))
+
+  fnames = [
+    'negative-words.txt', 'verbs-factive.txt', 'verbs-nonimplicative.txt', 
+    'positive-words.txt', 'verbs-implicative.txt', 'verbs-reporting.txt']
+
+  words = {}
+  for fname in fnames:
+    key = fname[:fname.index('.')]
+    path = fm.collection(fname)
+    
+    try:
+      words[key] = words_from_file(path)
+    except:
+      # negative-words is in ISO encoding
+      words[key] = words_from_file(path, encoding='ISO-8859-1')
+
+  return words
+
+
+def load_subjclues_words():
+  fm = FileManager()
+  df = pd.read_json(fm.collection('subjclues.json'))
+  return set(df.word1)
+

@@ -3,4 +3,4 @@ def const(out):
 
 
 def id():
-  return lambda *x: x
+  return lambda x: x
